@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Admission Form</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf1f8;
+            margin: 0;
+            padding: 25px 12px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px #bbb;
+        }
+
+        h1 {
+            text-align: center;
+            color: #123c69;
+        }
+
+        p {
+            text-align: center;
+            color: #555;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        button {
+            grid-column: 1 / -1;
+            background: #123c69;
+            color: white;
+            padding: 13px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #205b91;
+        }
+
+        #message {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+            margin-top: 18px;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Student Admission Form</h1>
+        <p>Enter your details to apply for admission.</p>
+
+        <form id="admissionForm">
+            <div class="field">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="field">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone"
+                       pattern="[0-9]{10}"
+                       maxlength="10" required>
+            </div>
+
+            <div class="field">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" required>
+            </div>
+
+            <div class="field">
+                <label for="gender">Gender</label>
+                <select id="gender" required>
+                    <option value="">Select Gender</option>
+                    <option>Female</option>
+                    <option>Male</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="course">Select Course</label>
+                <select id="course" required>
+                    <option value="">Select Course</option>
+                    <option>B.Tech</option>
+                    <option>B.Sc</option>
+                    <option>B.Com</option>
+                    <option>BBA</option>
+                </select>
+            </div>
+
+            <div class="field full">
+                <label for="address">Address</label>
+                <textarea id="address" rows="3" required></textarea>
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </form>
+
+        <div id="message" aria-live="polite"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById("admissionForm");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            document.getElementById("message").textContent =
+                "Admission form submitted successfully!";
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>
